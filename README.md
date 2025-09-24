@@ -54,6 +54,13 @@ git clone git@github.com:sooster910/clean-readable-code.git
 
 학습 과정에서 직접 적용한 리팩토링/설계 내용 커밋 기록
 
+2.8 네이밍
+
+open이 해당 코드에서 하는 일은, flag인데 모든 cell을 순회하면서, □ 빈 cell이 보이면 open은 false이다.
+즉, 빈 cell이 하나도 없으면 open은 true로, 사용자가 모든 cell을 다 눌렀다는 의미가 된다.
+강의에서는 isAllOpened라고 했지만, cell을 중심으로 게임진행상태와 맥락을 이어온다는점에서 cell을 붙어 allCellOpened라고 네이밍함.
+
+
 ## 주의 사항
 
 학습 및 포트폴리오용 프로젝트입니다.
