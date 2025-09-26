@@ -72,6 +72,101 @@ public class MinesweeperGame {
         }
     }
 
+    private static int convertColumnFrom(char cellInputCol) {
+        switch (cellInputCol) {
+            case 'a':
+                return 0;
+            case 'b':
+                 return 1;
+            case 'c':
+                return 2;
+            case 'd':
+                return 3;
+            case 'e':
+                return 4;
+            case 'f':
+                return 5;
+            case 'g':
+                return 6;
+            case 'h':
+                return 7;
+            case 'i':
+                return 8;
+            case 'j':
+                return 9;
+            default:
+                return -1;
+        }
+    }
+
+    private static int convertRowFrom(char cellInputRow) {
+       return  Character.getNumericValue(cellInputRow) - 1;
+    }
+
+    private static void printBoard() {
+        System.out.println("   a b c d e f g h i j");
+        for (int row = 0; row < 8; row++) {
+            System.out.printf("%d  ", row + 1);
+            for (int col = 0; col < 10; col++) {
+                System.out.print(board[row][col] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void initializeGame() {
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 10; col++) {
+                board[row][col] = "□";
+            }
+        }
+        for (int i = 0; i < 10; i++) { //지뢰세팅
+            int col = new Random().nextInt(10);
+            int row = new Random().nextInt(8);
+            landMines[row][col] = true;
+        }
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 10; col++) {
+                int count = 0;
+                if (!landMines[row][col]) { //지뢰가 아니라면
+                    if (row - 1 >= 0 && col - 1 >= 0 && landMines[row - 1][col - 1]) {
+                        count++;
+                    }
+                    if (row - 1 >= 0 && landMines[row - 1][col]) {
+                        count++;
+                    }
+                    if (row - 1 >= 0 && col + 1 < 10 && landMines[row - 1][col + 1]) {
+                        count++;
+                    }
+                    if (col - 1 >= 0 && landMines[row][col - 1]) {
+                        count++;
+                    }
+                    if (col + 1 < 10 && landMines[row][col + 1]) {
+                        count++;
+                    }
+                    if (row + 1 < 8 && col - 1 >= 0 && landMines[row + 1][col - 1]) {
+                        count++;
+                    }
+                    if (row + 1 < 8 && landMines[row + 1][col]) {
+                        count++;
+                    }
+                    if (row + 1 < 8 && col + 1 < 10 && landMines[row + 1][col + 1]) {
+                        count++;
+                    }
+                    landMineCounts[row][col] = count;
+                    continue;
+                }
+                landMineCounts[row][col] = 0;
+            }
+        }
+    }
+
+    private static void showGameStartComments() {
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println("지뢰찾기 게임 시작!");
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    }
+
     private static void open(int row, int col) {
         if (row < 0 || row >= 8 || col < 0 || col >= 10) {
             return;
