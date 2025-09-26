@@ -13,50 +13,7 @@ public class MinesweeperGame {
     public static void main(String[] args) {
         showGameStartComments();
         Scanner scanner = new Scanner(System.in);
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 10; col++) {
-                board[row][col] = "□";
-            }
-        }
-        for (int i = 0; i < 10; i++) { //지뢰세팅
-            int col = new Random().nextInt(10);
-            int row = new Random().nextInt(8);
-            landMines[row][col] = true;
-        }
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 10; col++) {
-                int count = 0;
-                if (!landMines[row][col]) { //지뢰가 아니라면
-                    if (row - 1 >= 0 && col - 1 >= 0 && landMines[row - 1][col - 1]) {
-                        count++;
-                    }
-                    if (row - 1 >= 0 && landMines[row - 1][col]) {
-                        count++;
-                    }
-                    if (row - 1 >= 0 && col + 1 < 10 && landMines[row - 1][col + 1]) {
-                        count++;
-                    }
-                    if (col - 1 >= 0 && landMines[row][col - 1]) {
-                        count++;
-                    }
-                    if (col + 1 < 10 && landMines[row][col + 1]) {
-                        count++;
-                    }
-                    if (row + 1 < 8 && col - 1 >= 0 && landMines[row + 1][col - 1]) {
-                        count++;
-                    }
-                    if (row + 1 < 8 && landMines[row + 1][col]) {
-                        count++;
-                    }
-                    if (row + 1 < 8 && col + 1 < 10 && landMines[row + 1][col + 1]) {
-                        count++;
-                    }
-                    landMineCounts[row][col] = count;
-                    continue;
-                }
-                landMineCounts[row][col] = 0;
-            }
-        }
+        initializeGame();
         while (true) {
             System.out.println("   a b c d e f g h i j");
             for (int row = 0; row < 8; row++) {
