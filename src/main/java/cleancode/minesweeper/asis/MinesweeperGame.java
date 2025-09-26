@@ -31,43 +31,8 @@ public class MinesweeperGame {
             String userActionInput = scanner.nextLine();
             char cellInputCol = cellInput.charAt(0);
             char cellInputRow = cellInput.charAt(1);
-            int selectedColumnIndex;
-            switch (cellInputCol) {
-                case 'a':
-                    selectedColumnIndex = 0;
-                    break;
-                case 'b':
-                    selectedColumnIndex = 1;
-                    break;
-                case 'c':
-                    selectedColumnIndex = 2;
-                    break;
-                case 'd':
-                    selectedColumnIndex = 3;
-                    break;
-                case 'e':
-                    selectedColumnIndex = 4;
-                    break;
-                case 'f':
-                    selectedColumnIndex = 5;
-                    break;
-                case 'g':
-                    selectedColumnIndex = 6;
-                    break;
-                case 'h':
-                    selectedColumnIndex = 7;
-                    break;
-                case 'i':
-                    selectedColumnIndex = 8;
-                    break;
-                case 'j':
-                    selectedColumnIndex = 9;
-                    break;
-                default:
-                    selectedColumnIndex = -1;
-                    break;
-            }
-            int selectedRowIndex = Character.getNumericValue(cellInputRow) - 1;
+            int selectedColumnIndex = convertColumnFrom(cellInputCol);
+            int selectedRowIndex = convertRowFrom(cellInputRow);
             if (userActionInput.equals("2")) {
                 board[selectedRowIndex][selectedColumnIndex] = "⚑";
              
