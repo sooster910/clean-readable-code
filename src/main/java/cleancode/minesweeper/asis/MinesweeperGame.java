@@ -15,14 +15,7 @@ public class MinesweeperGame {
         Scanner scanner = new Scanner(System.in);
         initializeGame();
         while (true) {
-            System.out.println("   a b c d e f g h i j");
-            for (int row = 0; row < 8; row++) {
-                System.out.printf("%d  ", row + 1);
-                for (int col = 0; col < 10; col++) {
-                    System.out.print(board[row][col] + " ");
-                }
-                System.out.println();
-            }
+            printBoard();
             if (gameStatus == 1) {
                 System.out.println("지뢰를 모두 찾았습니다. GAME CLEAR!");
                 break;
