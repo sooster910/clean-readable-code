@@ -36,17 +36,7 @@ public class MinesweeperGame {
             if (userActionInput.equals("2")) {
                 board[selectedRowIndex][selectedColumnIndex] = "⚑";
              
-                boolean allCellsOpened = true;
-                for (int row = 0; row < 8; row++) {
-                    for (int col = 0; col < 10; col++) {
-                        if (board[row][col].equals("□")) {
-                            allCellsOpened = false;
-                        }
-                    }
-                }
-                if (allCellsOpened) {
-                    gameStatus = 1;
-                }
+                checkIfAllCellsOpened();
             } else if (userActionInput.equals("1")) {
                 if (landMines[selectedRowIndex][selectedColumnIndex]) {
                     board[selectedRowIndex][selectedColumnIndex] = "☼";
@@ -55,20 +45,24 @@ public class MinesweeperGame {
                 } else {
                     open(selectedRowIndex, selectedColumnIndex);
                 }
-                boolean allCellsOpened = true;
-                for (int i = 0; i < 8; i++) {
-                    for (int j = 0; j < 10; j++) {
-                        if (board[i][j].equals("□")) {
-                            allCellsOpened = false;
-                        }
-                    }
-                }
-                if (allCellsOpened) {
-                    gameStatus = 1;
-                }
+                checkIfAllCellsOpened();
             } else {
                 System.out.println("잘못된 번호를 선택하셨습니다.");
             }
+        }
+    }
+
+    private static void checkIfAllCellsOpened() {
+        boolean allCellsOpened = true;
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 10; col++) {
+                if (board[row][col].equals("□")) {
+                    allCellsOpened = false;
+                }
+            }
+        }
+        if (allCellsOpened) {
+            gameStatus = 1;
         }
     }
 
