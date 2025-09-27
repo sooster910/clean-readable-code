@@ -104,8 +104,12 @@ public class MinesweeperGame {
     private static void checkIfGameOver() {
         boolean allCellsOpened = isAllCellsOpened();
         if (allCellsOpened) {
-            gameStatus = 1;
+            changeGameStatusToWin();
         }
+    }
+
+    private static void changeGameStatusToWin() {
+        gameStatus = 1;
     }
 
     private static boolean isAllCellsOpened() {
