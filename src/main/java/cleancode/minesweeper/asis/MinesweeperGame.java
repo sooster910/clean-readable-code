@@ -24,15 +24,13 @@ public class MinesweeperGame {
                 System.out.println("지뢰를 밟았습니다. GAME OVER!");
                 break;
             }
-            System.out.println();
-            System.out.println("선택할 좌표를 입력하세요. (예: a1)");
-            String cellInput = scanner.nextLine();
-            System.out.println("선택한 셀에 대한 행위를 선택하세요. (1: 오픈, 2: 깃발 꽂기)");
-            String userActionInput = scanner.nextLine();
-            char cellInputCol = cellInput.charAt(0);
-            char cellInputRow = cellInput.charAt(1);
-            int selectedColumnIndex = convertColumnFrom(cellInputCol);
-            int selectedRowIndex = convertRowFrom(cellInputRow);
+
+            String cellInput = getCellInputFromUser(scanner);
+            String userActionInput = getUserActionInputFromUser(scanner);
+
+            int selectedColumnIndex = getSelectedColumnIndex(cellInput);
+            int selectedRowIndex = getSelectedRowIndex(cellInput);
+
             if (userActionInput.equals("2")) {
                 board[selectedRowIndex][selectedColumnIndex] = "⚑";
              
@@ -50,6 +48,26 @@ public class MinesweeperGame {
                 System.out.println("잘못된 번호를 선택하셨습니다.");
             }
         }
+    }
+
+    private static int getSelectedRowIndex(String cellInput) {
+        char cellInputRow = cellInput.charAt(1);
+        return convertRowFrom(cellInputRow);
+    }
+
+    private static int getSelectedColumnIndex(String cellInput) {
+        char cellInputCol = cellInput.charAt(0);
+        return convertColumnFrom(cellInputCol);
+    }
+
+    private static String getUserActionInputFromUser(Scanner scanner) {
+        System.out.println("선택한 셀에 대한 행위를 선택하세요. (1: 오픈, 2: 깃발 꽂기)");
+        return scanner.nextLine();
+    }
+
+    private static String getCellInputFromUser(Scanner scanner) {
+        System.out.println("선택할 좌표를 입력하세요. (예: a1)");
+        return scanner.nextLine();
     }
 
     private static boolean hasUserLost() {
